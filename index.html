@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Course Enrollment</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .form-container {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 360px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+        color: #444;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Course Enrollment</h2>
+    <form id="enrollmentForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Enter your email">
+
+        <label for="course">Select Course:</label>
+        <select id="course">
+            <option value="">-- Select a Course --</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Python Programming">Python Programming</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Machine Learning">Machine Learning</option>
+        </select>
+
+        <label for="payment">Payment Confirmation Number:</label>
+        <input type="text" id="payment" placeholder="Enter payment confirmation ID">
+
+        <button type="submit">Enroll</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let course = document.getElementById("course").value;
+        let payment = document.getElementById("payment").value.trim();
+
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !course || !payment) {
+            alert("All fields must be filled!");
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address!");
+            return;
+        }
+
+        if (payment.length < 6) {
+            alert("Payment confirmation number must be at least 6 characters!");
+            return;
+        }
+
+        alert("Enrollment Successful!");
+    });
+</script>
+
+</body>
+</html>
